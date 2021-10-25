@@ -2,6 +2,9 @@ var express = require('express');
 
 var app = express();
 
+// middlewares
+app.use(express.json());  
+
 // output a get function on the screen
 
 app.get('/home', (req, res) => {
