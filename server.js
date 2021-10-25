@@ -1,49 +1,51 @@
-const express = require('express');
-const morgan = require('morgan');
-const { MongoClient } = require('mongodb');
+var express = require('express');
+const mongoose = require('mongoose');
+var app = express();
+const cors = require('cors');
+// const morgan = require('morgan');
+// const { MongoClient } = require('mongodb');
 
 require('dotenv').config();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 const { CONFIG_ENV_CONNECTION } = process.env;
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
 
 
-express()
-  .use(morgan('dev'))
-  .use(express.urlencoded({ extended: false }))
-  .use(express.json())
+// middlewares
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: false }))
+app.use(cors())
 
-  // hello from server
-  .get('/hello', (req, res) => {
-    res.status(200).json({ greeting: 'hello from heroku and node ' });
-  })
+// output a get function on the screen
 
-  // hello from db
-  .get('/greeting', async (req, res) => {
-    try {
-      // this will connect to mongodb
-      const client = await MongoClient(CONFIG_ENV_CONNECTION, options);
-      await client.connect();
+app.get('/home', (req, res) => {
+    res.status(200).json({ home: 'hello from heroku and node ' });
+});
 
-      const db = client.db('research-stream');
-      const { greeting } = await db
-        .collection('greetings')
-        .findOne({ type: 'hello' });
 
-      client.close();
-      res.status(200).json({ greeting });
+// output a get function from routes folder
+// working route!
 
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'something went wrong ' });
-    }
-  })
+const getRoute = require('./routes/posts');   //path to file posts.js
+app.use('/posts', getRoute);                   //use this route eg. /posts/add
 
-  .listen(PORT, () => {
-    console.info(`🌍 Listening on port ${PORT}`);
-  });
+
+
+
+
+
+
+
+// using mongoose
+mongoose.connect(process.env.CONFIG_ENV_CONNECTION,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }, 
+    () => console.log('from mongoose.connect = This is connected to mongodb database!')
+  );
+
+app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+})

@@ -15,10 +15,9 @@ router.get('/specific', (req, res) => {
 // POST DATA TO DATABASE
 router.post('/add', async (req, res) => {
     const post = new databasePost({
-        name : req.body.name
-        // email: req.body.email,
-        // subject: req.body.subject,
-        // message: req.body.message,
+        email: req.body.email,
+        subject: req.body.subject,
+        message: req.body.message,
     });
     try{
         const savedPost = await post.save();
@@ -28,6 +27,7 @@ router.post('/add', async (req, res) => {
         res.json({message: err});
     }
 })
+
 
 
 
