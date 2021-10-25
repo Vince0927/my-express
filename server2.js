@@ -1,6 +1,7 @@
 var express = require('express');
 const mongoose = require('mongoose');
 var app = express();
+const cors = require('cors');
 // const morgan = require('morgan');
 // const { MongoClient } = require('mongodb');
 
@@ -14,7 +15,7 @@ const { CONFIG_ENV_CONNECTION } = process.env;
 // middlewares
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }))
-
+app.use(cors())
 
 // output a get function on the screen
 
@@ -24,8 +25,10 @@ app.get('/home', (req, res) => {
 
 
 // output a get function from routes folder
+// working route!
+
 const getRoute = require('./routes/about');
-app.use('/about', getRoute);
+app.use('/posts', getRoute);
 
 
 
