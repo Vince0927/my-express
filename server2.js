@@ -1,8 +1,8 @@
 var express = require('express');
 const mongoose = require('mongoose');
 var app = express();
-const morgan = require('morgan');
-const { MongoClient } = require('mongodb');
+// const morgan = require('morgan');
+// const { MongoClient } = require('mongodb');
 
 require('dotenv').config();
 
@@ -21,6 +21,16 @@ app.use(express.urlencoded({ extended: false }))
 app.get('/home', (req, res) => {
     res.status(200).json({ home: 'hello from heroku and node ' });
 });
+
+
+// output a get function from routes folder
+const getRoute = require('./routes/about');
+app.use('/about', getRoute);
+
+
+
+
+
 
 
 
