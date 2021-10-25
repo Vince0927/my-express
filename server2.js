@@ -4,7 +4,7 @@ var app = express();
 
 // output a get function on the screen
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.send('Hi Enteng Gwapo');
 });
 
