@@ -5,12 +5,14 @@ const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 4000;
-const { MONGO_URI } = process.env;
+const { CONFIG_ENV_CONNECTION } = process.env;
 
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+
 express()
   .use(morgan('dev'))
   .use(express.urlencoded({ extended: false }))
@@ -18,13 +20,14 @@ express()
 
   // hello from server
   .get('/hello', (req, res) => {
-    res.status(200).json({ greeting: 'hello from heroku and node 👋' });
+    res.status(200).json({ greeting: 'hello from heroku and node ' });
   })
 
   // hello from db
   .get('/greeting', async (req, res) => {
     try {
-      const client = await MongoClient(MONGO_URI, options);
+      // this will connect to mongodb
+      const client = await MongoClient(CONFIG_ENV_CONNECTION, options);
       await client.connect();
 
       const db = client.db('research-stream');
@@ -34,9 +37,10 @@ express()
 
       client.close();
       res.status(200).json({ greeting });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'something went wrong ☹️' });
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'something went wrong ' });
     }
   })
 
