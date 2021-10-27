@@ -148,19 +148,19 @@ router.delete('/db_delete/:id', async(req, res) => {
 // (6) CREATE UPDATE PATH
 // UPDATE A POST - working
 // email, subject etc
-// router.patch('/db_update/:id', async (req, res) => {
-//     try{
-//         const updatedPost = await databasePost.updateOne(
-//             {_id: req.params.id}, 
-//             { $set: {name: req.body.name, 
-//                     email: req.body.email, 
-//                     subject: req.body.subject, 
-//                     message: req.body.message}});
-//         res.json(updatedPost);
-//     }catch(err){
-//         res.json({message: err});
-//     }
-// })
+router.patch('/db_update/:id', async (req, res) => {
+    try{
+        const updatedPost = await databasePost.updateOne(
+            {_id: req.params.id}, 
+            { $set: {name: req.body.name, 
+                    email: req.body.email, 
+                    subject: req.body.subject, 
+                    message: req.body.message}});
+        res.json(updatedPost);
+    }catch(err){
+        res.json({message: err});
+    }
+})
 
 
 
