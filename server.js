@@ -4,7 +4,7 @@ var express = require('express');
 const mongoose = require('mongoose');
 var app = express();
 const cors = require('cors');
-const host = '0.0.0.0';
+
 
 
 // (2) CONFIGURE DOTENV AND PORT
@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // (3) MIDDLEWARES / FUNCTIONS
 app.use(express.json()); 
-// app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 // (4) CREATE A HOME SCREEN URL 
@@ -49,7 +49,7 @@ mongoose.connect(process.env.CONFIG_ENV_CONNECTION,
 
 // (7) START LISTENING ON PORT
 // listening on PORT 5000
-app.listen(PORT, host, () => {
+app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
 })
 
