@@ -72,15 +72,15 @@ router.post('/add', async (req, res) => {
 
 // GET SPECIFIC POST FROM UNIQUE ID- working
 
-router.get('/db_getid/:id', async (req, res) => {
-    try{
-    const post = await databasePost.findById(req.params.id);
-    res.json(post);
+// router.get('/db_getid/:id', async (req, res) => {
+//     try{
+//     const post = await databasePost.findById(req.params.id);
+//     res.json(post);
 
-    }catch(err){
-        res.json({message: err});    
-    }
-})
+//     }catch(err){
+//         res.json({message: err});    
+//     }
+// })
 
 
 // router.get('/dummy/:id', async(req, res) => {
