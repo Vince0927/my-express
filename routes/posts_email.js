@@ -72,15 +72,15 @@ router.post('/add', async (req, res) => {
 
 // GET SPECIFIC POST FROM UNIQUE ID- working
 
-// router.get('/db_getid/:id', async (req, res) => {
-//     try{
-//     const post = await databasePost.findById(req.params.id);
-//     res.json(post);
+router.get('/db_getid/:id', async (req, res) => {
+    try{
+    const post = await databasePost.findById(req.params.id);
+    res.json(post);
 
-//     }catch(err){
-//         res.json({message: err});    
-//     }
-// })
+    }catch(err){
+        res.json({message: err});    
+    }
+})
 
 
 // router.get('/dummy/:id', async(req, res) => {
@@ -107,15 +107,15 @@ router.post('/add', async (req, res) => {
 
 // (5) CREATE DELETE PATH
 // DELETE POST -working
-router.delete('/db_delete/:id', async(req, res) => {
-    try{
-        const removedPost = await databasePost.remove({_id: req.params.id});
-        res.json(removedPost);
-    }catch(err){
-        res.json({message: err});
-    }
+// router.delete('/db_delete/:id', async(req, res) => {
+//     try{
+//         const removedPost = await databasePost.remove({_id: req.params.id});
+//         res.json(removedPost);
+//     }catch(err){
+//         res.json({message: err});
+//     }
 
-})
+// })
 
 
 // REMOVED USING GET and output it on the screen - (ORIGINAL/WORKING)
@@ -148,19 +148,19 @@ router.delete('/db_delete/:id', async(req, res) => {
 // (6) CREATE UPDATE PATH
 // UPDATE A POST - working
 // email, subject etc
-router.patch('/db_update/:id', async (req, res) => {
-    try{
-        const updatedPost = await databasePost.updateOne(
-            {_id: req.params.id}, 
-            { $set: {name: req.body.name, 
-                    email: req.body.email, 
-                    subject: req.body.subject, 
-                    message: req.body.message}});
-        res.json(updatedPost);
-    }catch(err){
-        res.json({message: err});
-    }
-})
+// router.patch('/db_update/:id', async (req, res) => {
+//     try{
+//         const updatedPost = await databasePost.updateOne(
+//             {_id: req.params.id}, 
+//             { $set: {name: req.body.name, 
+//                     email: req.body.email, 
+//                     subject: req.body.subject, 
+//                     message: req.body.message}});
+//         res.json(updatedPost);
+//     }catch(err){
+//         res.json({message: err});
+//     }
+// })
 
 
 
