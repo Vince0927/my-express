@@ -107,15 +107,15 @@ router.get('/db_getid/:id', async (req, res) => {
 
 // (5) CREATE DELETE PATH
 // DELETE POST -working
-// router.delete('/db_delete/:id', async(req, res) => {
-//     try{
-//         const removedPost = await databasePost.remove({_id: req.params.id});
-//         res.json(removedPost);
-//     }catch(err){
-//         res.json({message: err});
-//     }
+router.delete('/db_delete/:id', async(req, res) => {
+    try{
+        const removedPost = await databasePost.remove({_id: req.params.id});
+        res.json(removedPost);
+    }catch(err){
+        res.json({message: err});
+    }
 
-// })
+})
 
 
 // REMOVED USING GET and output it on the screen - (ORIGINAL/WORKING)
