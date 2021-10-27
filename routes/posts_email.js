@@ -22,18 +22,18 @@ router.get('/specific', (req, res) => {
 
 // GET dummy - WORKING!
 // get data from the dummy database
-// router.get('/dummy', async (req, res) => {
-//     try{
-//         res.json({
-//             data: emailData
-//           });
+router.get('/dummy', async (req, res) => {
+    try{
+        res.json({
+            data: emailData
+          });
 
-//     }catch(err){
-//         res.json({ message: err});
-//     }
-// });
+    }catch(err){
+        res.json({ message: err});
+    }
+});
 
-// // get all data from dummy database
+// get all data from dummy database
 
 
 
@@ -83,20 +83,20 @@ router.get('/db_getid/:id', async (req, res) => {
 })
 
 
-// router.get('/dummy/:id', async(req, res) => {
-//     let {id} = req.params;
-//     id = Number(id);
-//     try{
-//         let data;
-//         data = emailData.find(data => data._id === id);
-//         res.json({
-//             unique_data: data
-//         });
+router.get('/dummy/:id', async(req, res) => {
+    let {id} = req.params;
+    id = Number(id);
+    try{
+        let data;
+        data = emailData.find(data => data._id === id);
+        res.json({
+            unique_data: data
+        });
 
-//     }catch(err){
-//         res.json({message: err})
-//     }
-// })
+    }catch(err){
+        res.json({message: err})
+    }
+})
 
 
 
@@ -120,25 +120,25 @@ router.delete('/db_delete/:id', async(req, res) => {
 
 // REMOVED USING GET and output it on the screen - (ORIGINAL/WORKING)
 // removing dummy data using id
-// router.get('/dummy_deleted/:id', async( req, res) => {
-//     let {id} = req.params;
-//     id = Number(id);
+router.get('/dummy_deleted/:id', async( req, res) => {
+    let {id} = req.params;
+    id = Number(id);
 
-//     for (let i = 0; i < emailData.length; i++){
-//         if(emailData[i]._id === id){
-//             emailData.splice(i, 1);
-//         }
-//     }
-//     try{
-//         res.json({
-//             removedOneId: emailData
-//         })
-//         console.log(`Successfully removed ID: ${id}`);
+    for (let i = 0; i < emailData.length; i++){
+        if(emailData[i]._id === id){
+            emailData.splice(i, 1);
+        }
+    }
+    try{
+        res.json({
+            removedOneId: emailData
+        })
+        console.log(`Successfully removed ID: ${id}`);
 
-//     }catch(err){
-//         res.json({message: err})
-//     }
-// })
+    }catch(err){
+        res.json({message: err})
+    }
+})
 
 
 
@@ -165,39 +165,39 @@ router.patch('/db_update/:id', async (req, res) => {
 
 
 // CREATED PATCH OR UPDATES TO DUMMY DATA  (ORIGINAL/WORKING)
-// router.get('/dummy_updated/:id', async( req, res) => {
-//     let {id} = req.params;
-//     id = Number(id);
+router.get('/dummy_updated/:id', async( req, res) => {
+    let {id} = req.params;
+    id = Number(id);
 
-//     for (let i = 0; i < emailData.length; i++){
-//         if(emailData[i]._id === id){
-//             emailData.splice(i, 1);
-//         }
-//     }
-//     let container = [];
-//     for( let key in updatedEmail){
-//         container.push(updatedEmail[key]);
-//     }
+    for (let i = 0; i < emailData.length; i++){
+        if(emailData[i]._id === id){
+            emailData.splice(i, 1);
+        }
+    }
+    let container = [];
+    for( let key in updatedEmail){
+        container.push(updatedEmail[key]);
+    }
 
-//     let updatedEmailData = {
-//         _id: id,
-//         email: container[0],
-//         subject: container[1],
-//         message: container[2]
-//     }
+    let updatedEmailData = {
+        _id: id,
+        email: container[0],
+        subject: container[1],
+        message: container[2]
+    }
 
-//     try{
-//         const finalEmailData = emailData.concat(updatedEmailData);
+    try{
+        const finalEmailData = emailData.concat(updatedEmailData);
 
-//         res.json({
-//             newEmailUpdates: finalEmailData
-//         })
+        res.json({
+            newEmailUpdates: finalEmailData
+        })
 
 
-//     }catch(err){
-//         res.json({message: err})
-//     }
-// })
+    }catch(err){
+        res.json({message: err})
+    }
+})
 
 
 
