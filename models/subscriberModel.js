@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PostSchema = mongoose.Schema({
+const subSchema = mongoose.Schema({
     email:{
         type: String,
         required: true,
@@ -16,5 +16,5 @@ const PostSchema = mongoose.Schema({
 
 }, {timestamps: true});
 
-const email = mongoose.model('model_Posts', PostSchema);
-module.exports = email;
+const Sub = mongoose.model('Email', subSchema);
+module.exports = Sub;
