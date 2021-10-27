@@ -4,6 +4,8 @@ var express = require('express');
 const mongoose = require('mongoose');
 var app = express();
 const cors = require('cors');
+const host = '0.0.0.0';
+
 
 // (2) CONFIGURE DOTENV AND PORT
 require('dotenv').config();
@@ -47,7 +49,7 @@ mongoose.connect(process.env.CONFIG_ENV_CONNECTION,
 
 // (7) START LISTENING ON PORT
 // listening on PORT 5000
-app.listen(PORT, () => {
+app.listen(PORT, host, () => {
     console.log(`listening on port ${PORT}`);
 })
 
