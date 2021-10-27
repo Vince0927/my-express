@@ -4,7 +4,7 @@ var express = require('express');
 const mongoose = require('mongoose');
 var app = express();
 const cors = require('cors');
-
+const path = require('path');
 
 
 // (2) CONFIGURE DOTENV AND PORT
@@ -16,12 +16,13 @@ const PORT = process.env.PORT || 5000;
 
 // (3) MIDDLEWARES / FUNCTIONS
 app.use(express.json()); 
-app.use(express.urlencoded({ extended: false }))
+// app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 
 // (4) CREATE A HOME SCREEN URL 
 // output a get function on the HOME SCREEN
 //FILE on screen with url http://localhost:5000/home
+
 app.get('/home', (req, res) => {
     res.json({ home: 'hello from heroku and node ' });
 });
